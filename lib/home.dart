@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:spotify_clone_desktop/playlistScreen.dart';
 import 'package:spotify_clone_desktop/widget/menu.dart';
 
 class HomePage extends StatefulWidget {
@@ -17,7 +18,11 @@ class _HomePageState extends State<HomePage> {
           Expanded(
             child:Row(
               children: [
-               Menu()
+               Menu(),
+               Expanded(
+                child:  PlaylistScreen(),
+               )
+              
               ],
             )
              ),

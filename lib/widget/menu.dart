@@ -32,8 +32,9 @@ class Menu extends StatelessWidget {
                       icon: Icons.music_note,
                       onTap: (){},
                       ),
-                      const SizedBox(height: 12,),
+                      const SizedBox(height: 5,),
                       LibraryPlayList()
+              
                       
                     ],
                   ),
@@ -46,7 +47,7 @@ class SideMenuIconTap extends StatelessWidget {
   final String title;
   final IconData icon;
   final VoidCallback onTap;
-   SideMenuIconTap({
+   const SideMenuIconTap({
     super.key,
     required this.title,
     required this.icon,
@@ -57,7 +58,7 @@ class SideMenuIconTap extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListTile(
       leading:  Icon(icon,color: Colors.white,),
-      title:  Text(title,style:TextStyle(fontFamily: 'Montserrat',color: Colors.white,fontSize: 13)),
+      title:  Text(title,style:const TextStyle(fontFamily: 'Montserrat',color: Colors.white,fontSize: 13)),
       onTap: onTap,
     
     );
@@ -73,22 +74,63 @@ class LibraryPlayList extends StatefulWidget {
 }
 
 class _LibraryPlayListState extends State<LibraryPlayList> {
+
+  ScrollController? _ScrollController;
+  
+  void init(){
+    super.initState();
+    _ScrollController=ScrollController();
+  }
+  void dispose(){
+    _ScrollController?.dispose();
+    super.dispose();
+  }
+
+
   @override
   Widget build(BuildContext context) {
-    return ListView(
-       padding: const EdgeInsets.all(5),
-       physics: const ClampingScrollPhysics(),
-       children: [
-         Text('YOUR LIBRARY',style: TextStyle(fontFamily:'Montserrat',fontSize: 15,color: Colors.white ),),
-         for(int i=0;i<Song.yourLibrary.length;i++)buildListTile(Song.yourLibrary[i])
+    return Expanded(
+      
+      child:RawScrollbar(
+        thumbColor: Colors.grey,
 
-       ],
+        controller:ScrollController(),
+        child: ListView(
+         padding: const EdgeInsets.symmetric(vertical: 12),
+         physics: const ClampingScrollPhysics(),
+         children: [
+          
+         Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children:[
+           
+          const Padding(
+            padding:  EdgeInsets.only(left: 15,bottom: 10),
+          child:  Text('YOUR LIBRARY',style: TextStyle(fontFamily:'Montserrat',fontSize: 12,color:  Color.fromRGBO(255, 255, 255, 0.7), ),),
+          ),
+          
+           for(int i=0;i<Song.yourLibrary.length;i++)buildListTile(Song.yourLibrary[i]),
+          const  Padding(
+            padding:  EdgeInsets.only(left: 15,bottom: 10,top: 15),
+          child:  Text('PLAYLISTS',style: TextStyle(fontFamily:'Montserrat',fontSize: 12,color:  Color.fromRGBO(255, 255, 255, 0.7), ),),
+          ),
+          for(int i=0;i<Song.playlists.length;i++)buildListTile(Song.playlists[i]),
+         ],)
+         
+        
+         ],
+         
+            ),
+            
+      )
     );
   }
   ListTile buildListTile(String s){
 
     return ListTile(
-      title: Text(s,style: TextStyle(color: Colors.white,fontFamily:'Montserrat',fontSize: 15),),
+      title: Text(s,style:const TextStyle(color: Color.fromARGB(247, 255, 255, 255),fontFamily:'Montserrat',fontSize: 11),),
+      dense: true,
+      onTap: (){},
     );
 
   }
