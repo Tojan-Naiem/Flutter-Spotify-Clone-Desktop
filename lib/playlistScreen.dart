@@ -1,10 +1,13 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:spotify_clone_desktop/models/song.dart';
+import 'package:spotify_clone_desktop/widget/likeButton.dart';
 import 'package:spotify_clone_desktop/widget/playlistHeader.dart';
 
 class PlaylistScreen extends StatefulWidget {
-  const PlaylistScreen({super.key});
+   PlaylistScreen(this.song,{super.key});
+   String song;
 
   @override
   State<PlaylistScreen> createState() => _PlaylistScreenState();
@@ -14,17 +17,17 @@ class _PlaylistScreenState extends State<PlaylistScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      extendBodyBehindAppBar: true,
       appBar: appBar(),
   
       body: Container(
         width: double.infinity,
-        height: 250,
         decoration: const BoxDecoration(
           gradient: LinearGradient(
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
-            colors:[Colors.red,Colors.black] ,
-            stops: [0,0.5],
+            colors:[Color.fromARGB(255, 163, 18, 8),Colors.black] ,
+            stops: [0,0.3],
             
             )
         ),
@@ -32,7 +35,13 @@ class _PlaylistScreenState extends State<PlaylistScreen> {
           child: ListView( 
             padding: const EdgeInsets.all(20),
             children: [
-              PlaylistHeader()
+              const SizedBox(height: 50,),
+              Expanded(child: PlaylistHeader(widget.song),
+          
+              ),
+              const SizedBox(height: 20,),
+              LikeButton()
+              
             ],
           ),
         ),
@@ -53,7 +62,8 @@ class _PlaylistScreenState extends State<PlaylistScreen> {
 
   AppBar appBar(){
     return AppBar(
-      backgroundColor:Colors.red,
+      backgroundColor:Colors.transparent,
+      elevation: 0,
       title: Row( 
         children: [
           Container(

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:spotify_clone_desktop/models/song.dart';
 import 'package:spotify_clone_desktop/playlistScreen.dart';
 import 'package:spotify_clone_desktop/widget/menu.dart';
 
@@ -20,7 +21,7 @@ class _HomePageState extends State<HomePage> {
               children: [
                Menu(),
                Expanded(
-                child:  PlaylistScreen(),
+                child:  PlaylistScreen(Song.playlists[5]),
                )
               
               ],
