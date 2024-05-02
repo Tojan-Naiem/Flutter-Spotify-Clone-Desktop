@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:spotify_clone_desktop/models/song.dart';
 import 'package:spotify_clone_desktop/widget/likeButton.dart';
+import 'package:spotify_clone_desktop/widget/list.dart';
 import 'package:spotify_clone_desktop/widget/playlistHeader.dart';
 
 class PlaylistScreen extends StatefulWidget {
@@ -40,7 +41,9 @@ class _PlaylistScreenState extends State<PlaylistScreen> {
           
               ),
               const SizedBox(height: 20,),
-              LikeButton()
+              LikeButton(),
+               const SizedBox(height: 20,),
+              List(),
               
             ],
           ),

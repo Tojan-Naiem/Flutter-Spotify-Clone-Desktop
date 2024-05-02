@@ -30,7 +30,7 @@ class _LikeButtonState extends State<LikeButton> {
             IconButton(onPressed: (){}, icon: const Icon(Icons.more_horiz,color: Colors.white,)),
           ],
         ),
-        Text('FOLOWERS\n2,354,454',style: TextStyle(color: const Color.fromRGBO(255, 255, 255, 0.5),fontFamily: 'Montserrat',fontSize: 13),)
+       const Text('FOLOWERS\n2,354,454',style: TextStyle(color:  Color.fromRGBO(255, 255, 255, 0.5),fontFamily: 'Montserrat',fontSize: 13),)
       ],
     );
   }
